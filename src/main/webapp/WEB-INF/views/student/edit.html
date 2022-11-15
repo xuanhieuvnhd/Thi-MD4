@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/student/layout::head"></head>
+<body>
+<div th:replace="/student/layout::header"></div>
+<form method="post" th:object="${student}" enctype="multipart/form-data">
+    <fieldset>
+        <legend><h3>SỬA THÔNG TIN HỌC VIÊN</h3></legend>
+
+        <div class="input-info">
+            <lable for="classRoom"><h5>Lớp học</h5></lable>
+            <select  id="classRoom" th:field="*{classRoom}">
+                <option th:each="classRoom:${classrooms}"
+                        th:value="${classRoom.id}"
+                        th:text="${classRoom.name}">
+
+                </option>
+            </select>
+        </div>
+        <div class="input-info">
+            <lable for="name"><h5>Tên học viên</h5></lable>
+            <input type="text" id="name" th:field="*{name}">
+        </div>
+        <div class="input-info">
+            <lable for="date"><h5>Ngày sinh</h5></lable>
+            <input type="text" id="date" th:field="*{date}">
+        </div>
+        <div class="input-info">
+            <lable for="address"><h5>Địa chỉ</h5></lable>
+            <input type="text" id="address" th:field="*{address}">
+        </div>
+        <div class="input-info">
+            <lable for="phone"><h5>Số điện thoại</h5></lable>
+            <input type="text" id="phone" th:field="*{phone}">
+        </div>
+        <div class="input-info">
+            <lable for="email"><h5>Email</h5></lable>
+            <input type="text" id="email" th:field="*{email}">
+        </div>
+        <div class="input-info">
+            <lable for="image"><h5>Ảnh học viên</h5></lable>
+            <input type="file" id="image" th:field="*{image}">
+        </div>
+
+        <button class="btn btn-primary">Xác nhận</button>
+    </fieldset>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/student/layout::head"></head>
+<body>
+<div th:replace="/student/layout::header"></div>
+<form th:action="@{/students}">
+    <div class="search">
+        <lable><h5>Tìm kiếm học viên theo tên</h5></lable>
+        <input type="text" size="70" name="name">
+        <button class="btn btn-primary">Tìm kiếm</button>
+    </div>
+</form>
+<br>
+<a th:href="@{/students/create}">
+    <button class="btn btn-primary">Thêm học viên mới</button></a>
+<br>
+<fieldset>
+    <legend><h3>DANH SÁCH HỌC VIÊN</h3></legend>
+    <table class="table table-success table-striped">
+        <tr>
+            <th>STT</th>
+            <th>Lớp học</th>
+            <th>Tên học viên</th>
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Ảnh học viên</th>
+            <th>Thao tác</th>
+        </tr>
+        <tr th:each="student,studentStatus : ${students}">
+            <td th:text="${studentStatus.count}"></td>
+            <td th:text="${student.classRoom.getName()}"></td>
+           <td><a th:href="@{/students/view/__${student.id}__}" th:text="${student.name}"></a></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.date}"></td>
+            <td th:text="${student.address}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.email}"></td>
+            <td><img th:src="@{/image/__${student.image}__}" alt="Ảnh sản phẩm" width="100" height="100"></td>
+            <td>
+                <a th:href="@{/students/edit/__${student.id}__}">
+                    <button class="btn btn-primary">Sửa</button></a>
+                <a th:href="@{/students/delete/__${student.id}__}">
+                    <button class="btn btn-danger">Xóa</button></a>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</body>
+</html>
